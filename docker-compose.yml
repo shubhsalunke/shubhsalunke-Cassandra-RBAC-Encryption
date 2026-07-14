@@ -1,0 +1,33 @@
+services:
+  cassandra:
+    image: cassandra:4.1
+    container_name: task9_cassandra_security
+    restart: unless-stopped
+    ports:
+      - "9042:9042"
+    volumes:
+      - cassandra_data:/var/lib/cassandra
+      - ./certs:/certs
+      - ./scripts:/scripts
+    entrypoint: ["bash", "/scripts/entrypoint.sh"]
+    command: ["cassandra", "-f"]
+    healthcheck:
+      test: ["CMD-SHELL", "nodetool status | grep -q '^UN'"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
+
+  cassandra-init:
+    image: cassandra:4.1
+    container_name: task9_cassandra_init
+    volumes:
+      - ./certs:/certs
+      - ./scripts:/scripts
+    entrypoint: ["bash", "/scripts/init-db.sh"]
+    depends_on:
+      cassandra:
+        condition: service_healthy
+
+volumes:
+  cassandra_data:
