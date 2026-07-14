@@ -4,7 +4,7 @@ This repository provides a production-grade, containerized Apache Cassandra sand
 
 ---
 
-## 🏛️ Architecture Overview
+## Architecture Overview
 
 The system runs entirely within a Docker Compose environment. When started, the Cassandra node is configured with password-based authentication and database-level authorization. The client-to-node communication is secured using one-way SSL/TLS encryption.
 
@@ -40,7 +40,7 @@ flowchart TD
 
 ---
 
-## ✨ Key Enhancements in This Repository
+## Key Enhancements in This Repository
 
 1. **Automated SSL/TLS Bootstrap**: Added Unix Bash (`scripts/generate-certs.sh`) and Windows PowerShell (`scripts/generate-certs.ps1`) scripts to easily generate keystores and export public certificates with a single click.
 2. **Clean Container Lifecycles**: Removed brittle inline `sed` operations from the `docker-compose.yml` file. Configuration changes are now executed cleanly via a custom entrypoint script (`scripts/entrypoint.sh`), preserving the official image initialization.
@@ -50,7 +50,7 @@ flowchart TD
 
 ---
 
-## 📁 Repository Structure
+## Repository Structure
 
 ```text
 .
@@ -69,9 +69,9 @@ flowchart TD
 
 ---
 
-## 🚀 Getting Started
+## Getting Started
 
-### 📋 Prerequisites
+### Prerequisites
 
 Before running the project, make sure you have the following installed on your host system:
 * [Docker Desktop](https://www.docker.com/products/docker-desktop/) (v20.10+ / Compose v2.0+)
@@ -148,9 +148,9 @@ Once the database is initialized, you should see the following lines in the `tas
 
 ---
 
-## 🔒 Security Configuration Details
+## Security Configuration Details
 
-### 👥 Pre-Configured RBAC Roles
+### Pre-Configured RBAC Roles
 
 The system automatically initializes two distinct roles with different permission scopes:
 
@@ -165,7 +165,7 @@ The system automatically initializes two distinct roles with different permissio
 
 ---
 
-## 🧪 Verification & Manual Testing
+## Verification & Manual Testing
 
 ### 1. Connecting as Administrator (Superuser)
 
@@ -252,7 +252,7 @@ EXIT;
 
 ---
 
-## 🛠️ Troubleshooting
+## Troubleshooting
 
 ### 1. `keytool: command not found` on Host
 Make sure Java JDK is installed and the `bin` directory of your Java installation is included in your system's `PATH` environment variable. 
@@ -267,5 +267,5 @@ Alternatively, you can generate the certificates directly inside a temporary con
 
 ---
 
-## 📄 License
+## License
 This project is open-source and available under the MIT License.
