@@ -1,0 +1,6 @@
+certs/*.keystore
+certs/*.jks
+certs/*.key
+certs/*.p12
+*.log
+.env
